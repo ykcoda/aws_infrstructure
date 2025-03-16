@@ -1,7 +1,7 @@
 variable "env" {
-  
+
 }
 
 variable "project" {
-  
+
 }
