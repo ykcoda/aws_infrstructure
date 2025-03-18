@@ -1,22 +1,14 @@
-resource "tls_private_key" "ec2_private_key" {
-  algorithm = "RSA"
-  rsa_bits  = 4096
-}
-
-
-
+# This file creates a key pair for EC2 instances and saves the private key to a local file
+# The public key is loaded from a local file
+# The private key is saved to a local file
+# The key pair is tagged with the project name and environment name
 resource "aws_key_pair" "ec2_keypair" {
   key_name   = "${var.env}-${var.key_name}"
-  public_key = tls_private_key.ec2_private_key.public_key_openssh   
+  public_key = file("~/.ssh/my-terraform-ec2-key.pub")  #Load public key from local file
   
     tags = {
         Name = "${var.project}-${var.env}-keypair"
     }
 }
 
-
-resource "local_file" "ec2_private_key" {
-            content = tls_private_key.ec2_private_key.private_key_pem
-            filename = "${var.env}-key-name.pem"     
-}
 
