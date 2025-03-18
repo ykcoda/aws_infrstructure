@@ -4,16 +4,16 @@ resource "aws_security_group" "my_security_group" {
     vpc_id      = aws_vpc.dev_vpc.id
     
     ingress {
-        from_port   = 22
-        to_port     = 22
-        protocol    = "tcp"
+        from_port   = 0
+        to_port     = 0
+        protocol    = "-1"
         cidr_blocks = ["0.0.0.0/0"]
     }
 
-    ingress{
-        from_port   = -1
-        to_port     = -1
-        protocol    = "icmp"
-        cidr_blocks = ["0.0.0.0/0"]
-    }
+    #ingress{
+    #    from_port   = -1
+    #    to_port     = -1
+    #    protocol    = "icmp"
+    #  cidr_blocks = ["0.0.0.0/0"]
+    #}
 }
