@@ -21,4 +21,4 @@ resource "aws_instance" "db_server" {
   tags = {
     Name = "${var.project}-${var.env}-DB-Server"
   }
-}q
+}
